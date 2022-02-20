@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    
+   
+    
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Python Documentation</header>
+      <ul>
+        <li><a class="nav-link" href="#Version_3.10">Version 3.10</a></li>
+        <li><a class="nav-link" href="#installing">installing</a></li>
+        <li><a class="nav-link" href="#distributing">distributing</a></li>
+        <li><a class="nav-link" href="#library">library </a></li>
+        <li><a class="nav-link" href="#Library_2">Library 2</a></li>
+       
+    
+      </ul>
+    </nav>
+    
+    <main id="main-doc">
+      <section class="main-section" id="Version_3.10">
+        <header>Version 3.10</header>
+        <article>
+          <p>Summary – Release highlights
+          New syntax features:
+          
+          PEP 634, Structural Pattern Matching: Specification
+          
+          PEP 635, Structural Pattern Matching: Motivation and Rationale
+        </p>
+          PEP 636, Structural Pattern Matching: Tutorial
+          
+          bpo-12782, Parenthesized context managers are now officially allowed.
+          
+          New features in the standard library:
+          
+          PEP 618, Add Optional Length-Checking To zip.
+          
+          Interpreter improvements:
+          
+          PEP 626, Precise line numbers for debugging and other tools.
+          
+          <p>New typing features:
+          
+          PEP 604, Allow writing union types as X | Y
+          
+          PEP 613, Explicit Type Aliases
+          
+          PEP 612, Parameter Specification Variables </p>
+          
+          Important deprecations, removals or restrictions:
+          
+          PEP 644, Require OpenSSL 1.1.
+        </article>
+      </section>
+      <section class="main-section" id="installing">
+        <header>installing</header>
+        <article>
+          1 or newer
+    
+    ins unclosed parentheses or brackets the interpreter now includes the location of the unclosed bracket of parentheses instead of displaying SyntaxError: unexpected EOF while parsing or pointing to some incorrect location. For instance, consider the following code (notice the unclosed ‘{‘):
+    
+    <p>expected = {9: 1, 18: 2, 19: 2, 27: 3, 28: 3, 29: 3, 36: 4, 37: 4,
+                38: 4, 39: 4, 45: 5, 46: 5, 47: 5, 48: 5, 49: 5, 54: 6,
+    some_other_code = foo()
+    Previous versions of the interpreter reported confusing places as the location of the syntax error:</p>
+    the problem is detected. In this way, instead of displaying (before Python 3.10):
+    
+    >>>
+    >>> foo(x, z for z in range(10), t, w)
+      File "<stdin>", line 1
+        foo(x, z for z in range(10), t, w)
+               ^
+    <p>SyntaxError: Generator expression must be parenthesized
+    now Python 3.10 will display the exception as:</p>
+    
+    >>>
+    >>> foo(x, z for z in range(10), t, w)
+      File "<stdin>", line 1
+        foo(x, z for z in range(10), t, w)
+               ^^^^^^^^^^^^^^^^^^^^
+   <p> SyntaxError: Generator expression must be parenthesized
+    This improvement was contributed by Pablo Galindo in bpo-43914.</p>
+    
+    A considerable amount of new specialized messages for SyntaxError exceptions have been incorporated. Some of the most notable ones are as follows:
+    
+    <p>Missing : before blocks:
+    
+    >>>
+    >>> if rocket.position > event_horizon
+      File", line 1
+        if rocket.position > event_horizon</p>
+                                          ^
+    SyntaxError: expected ':'
+    (Contributed by Pablo Galindo in bpo-42997)
+        </article>
+      </section>
+     
+      <section class="main-section" id="distributing">
+        <header>distributing</header>
+        <article>
+          PEP 632, Deprecate distutils module.
+    
+   <p> PEP 623, Deprecate and prepare for the removal of the wstr member in PyUnicodeObject.</p>
+    
+    PEP 624, Remove Py_UNICODE encoder APIs
+    
+    PEP 597, Add optional EncodingWarning
+    
+    <p>New Features
+    Parenthesized context managers
+    Using enclosing parentheses for continuation across multiple lines in context managers is now supported. This allows formatting a long collection of context managers in multiple lines in a similar way as it was previously possible with import statements. For instance, all these examples are now valid:
+  </p>
+    <code>with (CtxManager() as example):
+        ...
+      </code>
+      <code> with (
+        CtxManager1(),
+        CtxManager2() </code>
+    ):
+        ...
+    
+        <code> with (CtxManager1() as example,
+          CtxManager2()):</code>
+          ):
+        ...
+        <code>
+    with (CtxManager1(),
+          CtxManager2() as example):
+        ...</code>
+    
+    with (<code>
+        CtxManager1() as example1,
+        CtxManager2() as example2
+    ):</code>
+        ...
+    it is also possible to use a trailing comma at the end of the enclosed group:
+    
+    with (
+      <ul>
+        <li>CtxManager1() as example1,</li>
+        <li>CtxManager2() as example2,</li>
+        <li>CtxManager3() as example3,</li>
+    ):</ul>
+        ...
+   <p> This new syntax uses the non LL(1) capacities of the new parser. Check PEP 617 for more details.</p>
+    
+   <p> (Contributed by Guido van Rossum, Pablo Galindo and Lysandros Nikolaou in bpo-12782 and bpo-40334.)
+    
+    Better error messages</p>
+    SyntaxErrors
+    When parsing code that conta
+        </article>
+      </section>
+      <section class="main-section" id="library">
+        <header>library</header>
+        <article>
+           
+    File "example.py", line 3
+    some_other_code = foo()
+                    ^
+SyntaxError: invalid syntax
+but in Python 3.10 a more informative error is emitted:
+
+File "example.py", line 1
+    expected = {9: 1, 18: 2, 19: 2, 27: 3, 28: 3, 29: 3, 36: 4, 37: 4,
+               ^
+SyntaxError: '{' was never closed
+In a similar way, errors involving unclosed string literals (single and triple quoted) now point to the start of the string instead of reporting EOF/EOL.
+<ul>
+<li>These improvements are inspired by </li> <li>previous work in the PyPy interpreter.</li>
+</ul>
+(Contributed by Pablo Galindo in bpo-42864 and Batuhan Taskaya in bpo-40176.)
+
+SyntaxError exceptions raised by the interpreter will now highlight the full error range of the expression that constitutes the syntax error itself, instead of just where
+        </article>
+      </section>
+      <section class="main-section" id="Library_2">
+        <header>Library 2</header>
+        <article>
+           
+    File "example.py", line 3
+    some_other_code = foo()
+                    ^
+SyntaxError: invalid syntax
+but in Python 3.10 a more informative error is emitted:
+
+File "example.py", line 1
+    expected = {9: 1, 18: 2, 19: 2, 27: 3, 28: 3, 29: 3, 36: 4, 37: 4,
+               ^
+SyntaxError: '{' was never closed
+In a similar way, errors involving unclosed string literals (single and triple quoted) now point to the start of the string instead of reporting EOF/EOL.
+
+These improvements are inspired by previous work in the PyPy interpreter.
+
+(Contributed by Pablo Galindo in bpo-42864 and Batuhan Taskaya in bpo-40176.)
+
+SyntaxError exceptions raised by the interpreter will now highlight the full error range of the expression that constitutes the syntax error itself, instead of just where
+        </article>
+      </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
